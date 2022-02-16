@@ -1,3 +1,4 @@
+#记录不上传的文件
 .DS_Store
 node_modules/
 dist/
@@ -5,7 +6,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 **/*.log
-.gitignore
 tests/**/coverage/
 tests/e2e/reports
 selenium-debug.log
