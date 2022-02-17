@@ -10,23 +10,30 @@
     <el-table
       ref="table"
       v-loading="loading"
+      :show-overflow-tooltip="true"
       :data="tableData"
-      stripe
+      :cell-style="{ textAlign: 'left' }"
       :header-cell-style="{ 'text-align': 'center', background: '#eef1f6' }"
-      style="width: 100%; margin-top: 10px"
+      style="width: 100%; margin-top: 10px; "
+      max-height="620"
     >
-      <el-table-column prop="固定资产类别" label="固定资产类别" width="150" />
-      <!-- <el-table-column label="期初">
-        <el-table-column prop="name" label="数量/面积" width="120" />
-        <el-table-column prop="name" label="原值" width="120" />
-        <el-table-column prop="name" label="累计折旧" width="120" />
-        <el-table-column prop="name" label="净值" width="120" />
+      <el-table-column
+        prop="固定资产类别"
+        label="固定资产类别"
+        width="250"
+        fixed
+      />
+      <el-table-column label="期初">
+        <el-table-column prop="期初数量" label="数量/面积" width="120" />
+        <el-table-column prop="期初原值" label="原值" width="120" />
+        <el-table-column prop="期初累计折旧" label="累计折旧" width="120" />
+        <el-table-column prop="期初净值" label="净值" width="120" />
       </el-table-column>
       <el-table-column label="期末">
-        <el-table-column prop="name" label="数量/面积" width="120" />
-        <el-table-column prop="name" label="原值" width="120" />
-        <el-table-column prop="name" label="累计折旧" width="120" />
-        <el-table-column prop="name" label="净值" width="120" />
+        <el-table-column prop="期末数量" label="数量/面积" width="120" />
+        <el-table-column prop="期末原值" label="原值" width="120" />
+        <el-table-column prop="期末累计折旧" label="累计折旧" width="120" />
+        <el-table-column prop="期末净值" label="净值" width="120" />
       </el-table-column>
       <el-table-column label="新增">
         <el-table-column prop="name" label="数量/面积" width="120" />
@@ -43,7 +50,7 @@
         <el-table-column prop="name" label="原值" width="120" />
         <el-table-column prop="name" label="累计折旧" width="120" />
         <el-table-column prop="name" label="净值" width="120" />
-      </el-table-column> -->
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -66,11 +73,76 @@ export default {
       get_monthlysettlementdata({
         departmenttwo: this.$store.getters.id_二级部门 || 0
       }).then(res => {
-        console.log(res.data)
-        this.tableData = res.data.期初
+        const arr = []
+        res.data.forEach((item, index, array) => {
+          if (item.固定资产类别 === '其中：房屋') {
+            item.固定资产类别 = '　　其中：房屋'
+          } else if (item.固定资产类别 === '其中：汽车') {
+            item.固定资产类别 = '　　其中：汽车'
+          } else if (item.固定资产类别 === '其中：（1）文物') {
+            item.固定资产类别 = '　　其中：（1）文物'
+          } else if (item.固定资产类别 === '（2）陈列品') {
+            item.固定资产类别 = '　　　　　（2）陈列品'
+          } else if (item.固定资产类别 === '其中：图书资料') {
+            item.固定资产类别 = '　　其中：图书资料'
+          } else if (item.固定资产类别 === '其中：家具用具') {
+            item.固定资产类别 = '　　其中：家具用具'
+          }
+          arr.push(item)
+        })
+        this.tableData = arr
+        this.addData()
         this.loading = false
       })
       this.loading = false
+    },
+    // 合计
+    addData() {
+      const obj = {
+        固定资产类别: '合计',
+        期初数量: null,
+        期初原值: null,
+        期初累计折旧: null,
+        期初净值: null,
+        期末数量: null,
+        期末原值: null,
+        期末累计折旧: null,
+        期末净值: null
+      }
+      this.tableData.unshift(obj)
+
+      this.tableData[0].期初数量 = this.sum(this.tableData, '期初数量').toFixed(
+        2
+      )
+      this.tableData[0].期初原值 = this.sum(this.tableData, '期初原值').toFixed(
+        2
+      )
+      this.tableData[0].期初累计折旧 = this.sum(
+        this.tableData,
+        '期初累计折旧'
+      ).toFixed(2)
+      this.tableData[0].期初净值 = this.sum(this.tableData, '期初净值').toFixed(
+        2
+      )
+
+      this.tableData[0].期末数量 = this.sum(this.tableData, '期末数量').toFixed(
+        2
+      )
+      this.tableData[0].期末原值 = this.sum(this.tableData, '期末原值').toFixed(
+        2
+      )
+      this.tableData[0].期末累计折旧 = this.sum(
+        this.tableData,
+        '期末累计折旧'
+      ).toFixed(2)
+      this.tableData[0].期末净值 = this.sum(this.tableData, '期末净值').toFixed(
+        2
+      )
+    },
+    sum(data, columnName) {
+      return data
+        .map(row => Number(row[columnName]))
+        .reduce((val, sum) => val + sum)
     }
   }
 }
