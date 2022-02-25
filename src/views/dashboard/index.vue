@@ -98,7 +98,7 @@
               id="main1"
               ref="main1"
               style="width: 100%; height: 400px; z-index: 6"
-            ></div>
+            />
             <div style="overflow: hidden; z-index: 8; height: 55px">
               <div
                 class="linka"
@@ -114,15 +114,13 @@
                   class="el-collapse-transition"
                   :style="style1mongy"
                   @click="main1click('金额')"
-                  >金额</el-link
-                >
+                >金额</el-link>
                 <el-link
                   :type="mian1sizesum"
                   class="el-collapse-transition"
                   :style="style1sum"
                   @click="main1click('数量')"
-                  >数量</el-link
-                >
+                >数量</el-link>
               </div>
             </div>
           </div>
@@ -133,7 +131,7 @@
               id="main2"
               ref="main2"
               style="width: 100%; height: 400px"
-            ></div>
+            />
             <div style="overflow: hidden; z-index: 8; height: 55px">
               <div
                 class="linka"
@@ -149,22 +147,20 @@
                   class="el-collapse-transition"
                   :style="style2mongy"
                   @click="main1click2('金额')"
-                  >金额</el-link
-                >
+                >金额</el-link>
                 <el-link
                   :type="mian2sizesum"
                   class="el-collapse-transition"
                   :style="style2sum"
                   @click="main1click2('数量')"
-                  >数量</el-link
-                >
+                >数量</el-link>
               </div>
             </div>
           </div>
         </el-col>
       </div>
     </el-row>
-    <el-row :gutter="40" style="margin-top: 30px">
+    <!-- <el-row :gutter="40" style="margin-top: 30px">
       <div class="Echarts">
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <div class="grid-content bg-purple-light" style="padding: 10px">
@@ -172,7 +168,7 @@
               id="main3"
               ref="main3"
               style="width: 100%; height: 500px"
-            ></div>
+            />
             <div style="overflow: hidden; z-index: 8; height: 55px">
               <div
                 class="linka"
@@ -188,21 +184,19 @@
                   class="el-collapse-transition"
                   :style="style3mongy"
                   @click="main1click3('金额')"
-                  >金额</el-link
-                >
+                >金额</el-link>
                 <el-link
                   :type="mian3sizesum"
                   class="el-collapse-transition"
                   :style="style3sum"
                   @click="main1click3('数量')"
-                  >数量</el-link
-                >
+                >数量</el-link>
               </div>
             </div>
           </div>
         </el-col>
       </div>
-    </el-row>
+    </el-row> -->
 
     <el-drawer
       center
@@ -215,10 +209,10 @@
         消息中心
       </h4>
       <el-table
-        :data="tableData"
         ref="DataTable"
-        style="width: 98%; margin-top: 1%; margin: 0 auto"
         v-loading="loading"
+        :data="tableData"
+        style="width: 98%; margin-top: 1%; margin: 0 auto"
         :highlight-current-row="true"
         border
         stripe
@@ -234,32 +228,28 @@
           type="index"
           width="50"
           :reserve-selection="true"
-        ></el-table-column>
-        <el-table-column prop="消息事项" label="消息事项"></el-table-column>
+        />
+        <el-table-column prop="消息事项" label="消息事项" />
         <el-table-column
           prop="消息内容"
           label="消息内容"
           :show-overflow-tooltip="true"
-        >
-        </el-table-column>
+        />
         <el-table-column
           prop="发布人"
           label="发布人"
           :show-overflow-tooltip="true"
-        >
-        </el-table-column>
+        />
         <el-table-column
           prop="发布时间"
           label="发布时间"
           :show-overflow-tooltip="true"
-        >
-        </el-table-column>
+        />
         <el-table-column
           prop="通知类型"
           label="通知类型"
           :show-overflow-tooltip="true"
-        >
-        </el-table-column>
+        />
         <el-table-column prop="" label="是否已读" :show-overflow-tooltip="true">
           <template slot-scope="scope">
             <span>{{ maturity(scope.row) }}</span>
@@ -267,7 +257,7 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="120">
           <template slot-scope="scope">
-            <el-button @click="hande(scope.row)" type="text" size="small">
+            <el-button type="text" size="small" @click="hande(scope.row)">
               已 读
             </el-button>
           </template>
@@ -277,14 +267,14 @@
         <el-col :span="24">
           <el-pagination
             background
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
             :current-page="pageinfo.pageNum"
             :page-sizes="pageinfo.pageSizes"
             :page-size="pageinfo.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="pageinfo.count"
-          ></el-pagination>
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
         </el-col>
       </el-row>
     </el-drawer>
@@ -292,7 +282,7 @@
 </template>
 
 <script>
-import CountTo from "vue-count-to";
+import CountTo from 'vue-count-to'
 import {
   get_agencydatal,
   get_proportionassetclasses,
@@ -300,33 +290,33 @@ import {
   get_increaseordecreaseinassets,
   get_proportionamountquantitycount,
   get_noticelist,
-  get_noticelistcount,
-} from "@/api/datareportstatisticshandle";
-import "echarts/theme/浅色.js"; //引用Echarts主题
+  get_noticelistcount
+} from '@/api/datareportstatisticshandle'
+import 'echarts/theme/浅色.js' // 引用Echarts主题
 export default {
   components: { CountTo },
   data() {
     return {
       times: 15,
-      tableData: [], //消息中心数据
-      direction: "rtl",
+      tableData: [], // 消息中心数据
+      direction: 'rtl',
       drawer: false,
       todosums: 0,
 
-      mian1sizesum: "info",
-      mian1sizemoney: "primary",
-      style1sum: "font-size:12px;",
-      style1mongy: "font-size:16px;",
+      mian1sizesum: 'info',
+      mian1sizemoney: 'primary',
+      style1sum: 'font-size:12px;',
+      style1mongy: 'font-size:16px;',
 
-      mian2sizesum: "info",
-      mian2sizemoney: "primary",
-      style2sum: "font-size:12px;",
-      style2mongy: "font-size:16px;",
+      mian2sizesum: 'info',
+      mian2sizemoney: 'primary',
+      style2sum: 'font-size:12px;',
+      style2mongy: 'font-size:16px;',
 
-      mian3sizesum: "info",
-      mian3sizemoney: "primary",
-      style3sum: "font-size:12px;",
-      style3mongy: "font-size:16px;",
+      mian3sizesum: 'info',
+      mian3sizemoney: 'primary',
+      style3sum: 'font-size:12px;',
+      style3mongy: 'font-size:16px;',
 
       zichansum: 0,
       yzsum: 0,
@@ -345,152 +335,169 @@ export default {
         fk_user: this.$store.getters.id_用户,
         fk_role: this.$store.getters.id_角色,
         departmentone: this.$store.getters.id_一级部门,
-        departmenttwo: this.$store.getters.id_二级部门,
-      },
-    };
+        departmenttwo: this.$store.getters.id_二级部门
+      }
+    }
+  },
+  beforeMount() {
+    this.onload()
+    if (window.name == '') {
+      // console.log("页面首次加载111");
+      window.name = 'reload'
+      this.tips() // 未读消息
+    } else {
+      // console.log("页面被刷新222");
+    }
+  },
+  mounted() {
+    this.myEcharts1('金额')
+    this.myEcharts2('金额')
+    this.myEcharts3('金额')
+    this.get_proportionamountquantitycount()
+    this.get_noticelist()
   },
   methods: {
     // 跳转资产处置
     gotochuzhi() {
-      this.$router.push({ path: "/assetDisposal/index" });
+      this.$router.push({ path: '/assetDisposal/index' })
     },
     hande(row) {
       // console.log(row);
       get_noticelistcount({ id: row.id, isread: 1 }).then((res) => {
-        this.get_noticelist();
-      });
+        this.get_noticelist()
+      })
     },
     maturity(row) {
       if (row.是否已读 == 0) {
-        return "未读";
+        return '未读'
       } else {
-        return "已读";
+        return '已读'
       }
     },
     yellowBg({ row, column, rowIndex, columnIndex }) {
       // console.log(row.是否已读);
       if (row.是否已读 == 0) {
         return {
-          background: "#d9ecff",
-        };
+          background: '#d9ecff'
+        }
       } else {
         return {
-          background: "",
-        };
+          background: ''
+        }
       }
     },
     // 打开消息
     xiaoxi() {
-      this.$router.push({ path: "/assetDisposal/index" });
+      this.$router.push({ path: '/assetDisposal/index' })
     },
     main1click(val) {
-      if (val == "金额") {
-        this.mian1sizesum = "info";
-        this.mian1sizemoney = "primary";
-        this.style1sum = "font-size:12px;";
-        this.style1mongy = "font-size:16px;";
+      if (val == '金额') {
+        this.mian1sizesum = 'info'
+        this.mian1sizemoney = 'primary'
+        this.style1sum = 'font-size:12px;'
+        this.style1mongy = 'font-size:16px;'
       } else {
-        this.style1sum = "font-size:16px;";
-        this.style1mongy = "font-size:12px;";
-        this.mian1sizesum = "primary";
-        this.mian1sizemoney = "info";
+        this.style1sum = 'font-size:16px;'
+        this.style1mongy = 'font-size:12px;'
+        this.mian1sizesum = 'primary'
+        this.mian1sizemoney = 'info'
       }
-      this.myEcharts1(val);
+      this.myEcharts1(val)
     },
     main1click2(val) {
-      if (val == "金额") {
-        this.mian2sizesum = "info";
-        this.mian2sizemoney = "primary";
-        this.style2sum = "font-size:12px;";
-        this.style2mongy = "font-size:16px;";
+      if (val == '金额') {
+        this.mian2sizesum = 'info'
+        this.mian2sizemoney = 'primary'
+        this.style2sum = 'font-size:12px;'
+        this.style2mongy = 'font-size:16px;'
       } else {
-        this.style2sum = "font-size:16px;";
-        this.style2mongy = "font-size:12px;";
-        this.mian2sizesum = "primary";
-        this.mian2sizemoney = "info";
+        this.style2sum = 'font-size:16px;'
+        this.style2mongy = 'font-size:12px;'
+        this.mian2sizesum = 'primary'
+        this.mian2sizemoney = 'info'
       }
-      this.myEcharts2(val);
+      this.myEcharts2(val)
     },
     main1click3(val) {
-      if (val == "金额") {
-        this.mian3sizesum = "info";
-        this.mian3sizemoney = "primary";
-        this.style3sum = "font-size:12px;";
-        this.style3mongy = "font-size:16px;";
+      if (val == '金额') {
+        this.mian3sizesum = 'info'
+        this.mian3sizemoney = 'primary'
+        this.style3sum = 'font-size:12px;'
+        this.style3mongy = 'font-size:16px;'
       } else {
-        this.style3sum = "font-size:16px;";
-        this.style3mongy = "font-size:12px;";
-        this.mian3sizesum = "primary";
-        this.mian3sizemoney = "info";
+        this.style3sum = 'font-size:16px;'
+        this.style3mongy = 'font-size:12px;'
+        this.mian3sizesum = 'primary'
+        this.mian3sizemoney = 'info'
       }
-      this.myEcharts3(val);
+      this.myEcharts3(val)
     },
     // 资产分类
     myEcharts1(val) {
       // 基于准备好的dom，初始化echarts实例
-      let echarts = require("echarts");
-      let myChart = echarts.init(this.$refs.main1, "浅色");
-      var str = [];
-      var sum = [];
-      var list = [];
+      const echarts = require('echarts')
+      const myChart = echarts.init(this.$refs.main1, '浅色')
+      var str = []
+      var sum = []
+      var list = []
       var data = {
         departmentone: this.$store.getters.id_一级部门,
         departmenttwo: this.$store.getters.id_二级部门,
-        checkway: val,
-      };
+        checkway: val
+      }
       get_proportionassetclasses(data).then((res) => {
         if (res.code > 0) {
           for (var i = 0; i < res.data.length; i++) {
-            str.push(res.data[i].类别);
-            sum.push(res.data[i].数量);
-            let j = {
+            str.push(res.data[i].类别)
+            sum.push(res.data[i].数量)
+            const j = {
               value: res.data[i].数量,
-              name: res.data[i].类别,
-            };
-            list.push(j);
+              name: res.data[i].类别
+            }
+            list.push(j)
           }
           // console.log(list)
           this.option = {
             title: {
-              text: "资产分类占比",
-              left: "center",
+              text: '资产分类占比',
+              left: 'center'
             },
             tooltip: {
-              trigger: "item",
-              formatter: "{a} <br/>{b} : {c} ({d}%)",
+              trigger: 'item',
+              formatter: '{a} <br/>{b} : {c} ({d}%)'
             },
             legend: {
-              orient: "vertical",
-              left: "left",
-              data: str,
+              orient: 'vertical',
+              left: 'left',
+              data: str
             },
             series: [
               {
                 name: val,
-                type: "pie",
-                radius: "65%",
-                center: ["50%", "50%"],
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
                 data: list,
                 emphasis: {
                   itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                  },
-                },
-              },
-            ],
-          };
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          }
 
           // 使用刚指定的配置项和数据显示图表。
-          myChart.setOption(this.option);
-          setTimeout(function () {
-            window.onresize = function () {
-              myChart.resize();
-            };
-          }, 200);
+          myChart.setOption(this.option)
+          setTimeout(function() {
+            window.onresize = function() {
+              myChart.resize()
+            }
+          }, 200)
         }
-      });
+      })
     },
     // 资产状态
     myEcharts2(val) {
@@ -506,70 +513,70 @@ export default {
       //   this.mian1sizemoney = "info";
       // }
       // 基于准备好的dom，初始化echarts实例
-      let echarts = require("echarts");
-      let myChart = echarts.init(this.$refs.main2, "浅色");
-      var str = [];
-      var sum = [];
-      var list = [];
+      const echarts = require('echarts')
+      const myChart = echarts.init(this.$refs.main2, '浅色')
+      var str = []
+      var sum = []
+      var list = []
       var data = {
         departmentone: this.$store.getters.id_一级部门,
         departmenttwo: this.$store.getters.id_二级部门,
-        checkway: val,
-      };
+        checkway: val
+      }
       get_proportionamountquantity(data).then((res) => {
         if (res.code > 0) {
           for (var i = 0; i < res.data.length; i++) {
-            str.push(res.data[i].资产状态);
-            sum.push(res.data[i].数量);
-            let j = {
+            str.push(res.data[i].资产状态)
+            sum.push(res.data[i].数量)
+            const j = {
               value: res.data[i].数量,
-              name: res.data[i].资产状态,
-            };
-            list.push(j);
+              name: res.data[i].资产状态
+            }
+            list.push(j)
           }
           // console.log(list)
           this.option = {
             title: {
-              text: "资产状态占比",
-              left: "center",
+              text: '资产状态占比',
+              left: 'center'
             },
-            color: ["#EE6666", "#73C0DE", "#91CB74", "#FAC858"],
+            color: ['#EE6666', '#73C0DE', '#91CB74', '#FAC858'],
             tooltip: {
-              trigger: "item",
-              formatter: "{a} <br/>{b} : {c} ({d}%)",
+              trigger: 'item',
+              formatter: '{a} <br/>{b} : {c} ({d}%)'
             },
             legend: {
-              orient: "vertical",
-              left: "left",
-              data: str,
+              orient: 'vertical',
+              left: 'left',
+              data: str
             },
             series: [
               {
                 name: val,
-                type: "pie",
-                radius: "65%",
-                center: ["50%", "50%"],
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
                 data: list,
                 emphasis: {
                   itemStyle: {
                     shadowBlur: 10,
                     shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                  },
-                },
-              },
-            ],
-          };
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          }
 
           // 使用刚指定的配置项和数据显示图表。
-          myChart.setOption(this.option);
-          setTimeout(function () {
-            window.onresize = function () {
-              myChart.resize();
-            };
-          }, 200);
+          myChart.setOption(this.option)
+          setTimeout(function() {
+            window.onresize = function() {
+              myChart.resize()
+            }
+          }, 200)
         }
-      });
+      })
     },
     // 12个月
     myEcharts3(val) {
@@ -584,178 +591,178 @@ export default {
       //   this.mian1sizesum = "primary";
       //   this.mian1sizemoney = "info";
       // }
-      let echarts = require("echarts");
-      let myChart = echarts.init(this.$refs.main3, "浅色");
+      const echarts = require('echarts')
+      const myChart = echarts.init(this.$refs.main3, '浅色')
 
       var data = {
         departmentone: this.$store.getters.id_一级部门,
         departmenttwo: this.$store.getters.id_二级部门,
         checkway: val,
-        year: this.dayjs().year(),
-      };
-      var name = [];
-      var str = [];
-      var list = [];
-      var value = [];
+        year: this.dayjs().year()
+      }
+      var name = []
+      var str = []
+      var list = []
+      var value = []
       get_increaseordecreaseinassets(data).then((res) => {
         if (res.code > 0) {
           // list = res.data[0];
           for (var i = 0; i < res.data.length; i++) {
-            name.push(res.data[i].月份);
-            value.push(res.data[i].增加数量);
-            list.push(res.data[i].减少数量);
+            name.push(res.data[i].月份)
+            value.push(res.data[i].增加数量)
+            list.push(res.data[i].减少数量)
           }
 
           this.option = {
             title: {
-              text: "年增减分析",
-              left: "center",
+              text: '年增减分析',
+              left: 'center'
             },
             tooltip: {
-              trigger: "axis",
+              trigger: 'axis'
             },
             legend: {
               data: res.data.月份,
-              orient: "vertical",
-              left: "left",
+              orient: 'vertical',
+              left: 'left'
             },
             grid: {
-              left: "3%",
-              right: "4%",
-              bottom: "3%",
-              containLabel: true,
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
             },
             xAxis: {
-              type: "category",
+              type: 'category',
               boundaryGap: false,
-              data: name,
+              data: name
             },
             yAxis: {
-              type: "value",
+              type: 'value'
             },
             series: [
               {
-                name: "增加",
-                type: "line",
-                stack: "Total",
+                name: '增加',
+                type: 'line',
+                stack: 'Total',
                 data: value,
-                smooth: false,
+                smooth: false
               },
               {
-                name: "减少",
-                type: "line",
-                stack: "Total",
+                name: '减少',
+                type: 'line',
+                stack: 'Total',
                 data: list,
-                smooth: false,
-              },
-            ],
-          };
+                smooth: false
+              }
+            ]
+          }
           // 使用刚指定的配置项和数据显示图表。
-          myChart.setOption(this.option);
-          setTimeout(function () {
-            window.onresize = function () {
-              myChart.resize();
-            };
-          }, 200);
+          myChart.setOption(this.option)
+          setTimeout(function() {
+            window.onresize = function() {
+              myChart.resize()
+            }
+          }, 200)
         }
-      });
+      })
     },
     todosome() {
       // console.log(1);
       // /TodoCenter
-      this.$router.push({ path: "/Todo/index" });
+      this.$router.push({ path: '/Todo/index' })
     },
-    //待办总数
+    // 待办总数
     tosum() {
-      var data = {};
-      data.pageNum = 1;
-      data.pageSize = 10;
-      data.fk_user = this.$store.getters.id_用户;
-      data.fk_role = this.$store.getters.id_角色;
-      data.departmentone = this.$store.getters.id_一级部门;
-      data.departmenttwo = this.$store.getters.id_二级部门;
+      var data = {}
+      data.pageNum = 1
+      data.pageSize = 10
+      data.fk_user = this.$store.getters.id_用户
+      data.fk_role = this.$store.getters.id_角色
+      data.departmentone = this.$store.getters.id_一级部门
+      data.departmenttwo = this.$store.getters.id_二级部门
 
       get_agencydatal(data).then((res) => {
-        this.todosums = res.count;
-      });
+        this.todosums = res.count
+      })
     },
     onload() {
-      this.tosum();
+      this.tosum()
     },
     // 资产分类
     get_proportionassetclasses() {
       var data = {
         departmentone: this.$store.getters.id_一级部门,
-        departmenttwo: this.$store.getters.id_二级部门,
-      };
+        departmenttwo: this.$store.getters.id_二级部门
+      }
     },
     // 首页数据
     get_proportionamountquantitycount() {
       var data = {
         departmentone: this.$store.getters.id_一级部门,
-        departmenttwo: this.$store.getters.id_二级部门,
-      };
+        departmenttwo: this.$store.getters.id_二级部门
+      }
       get_proportionamountquantitycount(data).then((res) => {
-        this.zichansum = res.data.资产总数;
-        this.yzsum = res.data.原值合计;
-        this.jzsum = res.data.净值合计;
-        this.dczksum = res.data.待处置库;
-        this.ljdq = res.data.临界到期数;
-      });
+        this.zichansum = res.data.资产总数
+        this.yzsum = res.data.原值合计
+        this.jzsum = res.data.净值合计
+        this.dczksum = res.data.待处置库
+        this.ljdq = res.data.临界到期数
+      })
     },
     // 消息中心
     get_noticelist() {
-      this.loading = true;
+      this.loading = true
       get_noticelist(this.pageinfo).then((res) => {
-        this.loading = false;
-        this.tableData = res.data;
-        this.pageinfo.count = res.count;
-      });
+        this.loading = false
+        this.tableData = res.data
+        this.pageinfo.count = res.count
+      })
     },
-    //控制每页显示条数
+    // 控制每页显示条数
     handleSizeChange(val) {
-      this.pageinfo.pageSize = val;
-      this.get_noticelist();
+      this.pageinfo.pageSize = val
+      this.get_noticelist()
     },
-    //第几页
+    // 第几页
     handleCurrentChange(val) {
       // console.log(val)
-      this.pageinfo.pageNum = val;
-      this.get_noticelist();
+      this.pageinfo.pageNum = val
+      this.get_noticelist()
     },
     // 未读消息
     tips() {
-      const TIME_COUNT = 20;
+      const TIME_COUNT = 20
       if (!this.timer) {
-        this.count = TIME_COUNT;
+        this.count = TIME_COUNT
         this.timer = setInterval(() => {
           if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.count--;
-            let dom = document.querySelector("#countDownNumber");
-            dom.innerText = this.count;
+            this.count--
+            const dom = document.querySelector('#countDownNumber')
+            dom.innerText = this.count
           } else {
-            clearInterval(this.timer);
-            this.timer = null;
+            clearInterval(this.timer)
+            this.timer = null
           }
-        }, 1000);
+        }, 1000)
       }
-      let data = {
+      const data = {
         pageNum: 1,
         pageSize: 999999,
         fk_user: this.$store.getters.id_用户,
         fk_role: this.$store.getters.id_角色,
         departmentone: this.$store.getters.id_一级部门,
-        departmenttwo: this.$store.getters.id_二级部门,
-      };
+        departmenttwo: this.$store.getters.id_二级部门
+      }
       get_noticelist(data).then((res) => {
-        let dataa = {
+        const dataa = {
           pageNum: 1,
           pageSize: 999999,
           fk_user: this.$store.getters.id_用户,
           fk_role: this.$store.getters.id_角色,
           departmentone: this.$store.getters.id_一级部门,
-          departmenttwo: this.$store.getters.id_二级部门,
-        };
+          departmenttwo: this.$store.getters.id_二级部门
+        }
         get_agencydatal(dataa).then((ress) => {
           if (res.unreadcount != 0 && ress.count != 0) {
             this.$notify({
@@ -771,37 +778,20 @@ export default {
             <h3></h3>
             <span style="color: #808080;font-size: 14px">点击关闭窗口<span>
             <i id="countDownNumber" style="color: #FF0000;font-weight:700;padding: 0 0.01rem">${this.count}</i>秒`,
-              position: "bottom-right",
+              position: 'bottom-right',
               // type: "warning",
               showClose: false,
               duration: 20000,
               onClick() {
-                this.close();
-              },
-            });
+                this.close()
+              }
+            })
           }
-        });
-      });
-    },
-  },
-  beforeMount() {
-    this.onload();
-    if (window.name == "") {
-      // console.log("页面首次加载111");
-      window.name = "reload";
-      this.tips(); // 未读消息
-    } else {
-      // console.log("页面被刷新222");
+        })
+      })
     }
-  },
-  mounted() {
-    this.myEcharts1("金额");
-    this.myEcharts2("金额");
-    this.myEcharts3("金额");
-    this.get_proportionamountquantitycount();
-    this.get_noticelist();
-  },
-};
+  }
+}
 </script>
 
 <style lang="scss" scoped>
