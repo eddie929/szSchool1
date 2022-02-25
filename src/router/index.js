@@ -440,7 +440,7 @@ export const constantRoutes = [{
         {
             path: '/depreciation',
             component: () =>
-                import('@/views/depreciation/index'),
+                import('@/views/depreciation/index1'),
             name: 'depreciation',
             meta: { title: '资产折旧', icon: '折旧', noCache: true }
         },
@@ -471,7 +471,7 @@ export const constantRoutes = [{
         {
             path: '/SJKB',
             component: () =>
-                import('@/views/dataCenter/index'),
+                import('@/views/dataCenter/SJKB/index'),
             name: 'SJKB',
             meta: { title: '数据看板', icon: '折旧', noCache: true }
         },

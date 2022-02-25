@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './styles/element-variables.scss'
 
 import '@/styles/index.scss' // global css
-import '@/styles/common.scss' 
+import '@/styles/common.scss'
 
 import App from './App'
 import store from './store'
@@ -22,8 +22,8 @@ import * as filters from './filters' // global filters
 import dayjs from 'dayjs' // 获取时间
 Vue.prototype.dayjs = dayjs // 可以全局使用dayjs
 
-import methods from  "@/utils/methods.js"
-Vue.use(methods);
+import methods from '@/utils/methods.js'
+Vue.use(methods)
 // 自定义全局方法
 import global from '@/utils/global.js'
 Vue.use(global)
@@ -32,10 +32,12 @@ Vue.use(jsPlumb)
 import '@/views/flow_node/components/ef/index.css'
 
 import XLSX from 'xlsx'
-import echarts from 'echarts'
+// import echarts from 'echarts'
+import * as echarts from 'echarts'
 // import common from './common/common'
 // Vue.prototype.$common = common // 其中$common就是调用时所使用的方法
 Vue.prototype.$echarts = echarts
+// 全局可是使用
 Vue.use(XLSX)
 
 /**

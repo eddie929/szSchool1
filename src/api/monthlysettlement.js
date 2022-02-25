@@ -9,3 +9,11 @@ export function get_monthlysettlementdata(params) {
   })
 }
 
+// 创建折旧单
+export function monthlyclosingsubmit(data) {
+  return request({
+    url: '/monthlysettlement/monthlyclosingsubmit',
+    method: 'post',
+    data
+  })
+}

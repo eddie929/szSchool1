@@ -4,9 +4,9 @@
       确定结账前,务必与财务核对下列固定资产汇总表!
       本单位已经与财政资产云对接，共创软件不再接收撤销账期处理。请您仔细与财务核对，确认无误后再结账。
     </p>
-    <el-button plain>月结帐</el-button>
+    <el-button plain @click="btnok">月结帐</el-button>
     <p style="font-size:20px">固定资产汇总表</p>
-    <p>账期:2022年01月</p>
+    <p>{{ bill }}</p>
     <el-table
       ref="table"
       v-loading="loading"
@@ -56,13 +56,17 @@
 </template>
 
 <script>
-import { get_monthlysettlementdata } from '@/api/monthlysettlement'
+import {
+  get_monthlysettlementdata,
+  monthlyclosingsubmit
+} from '@/api/monthlysettlement'
 export default {
   components: {},
   data() {
     return {
       tableData: [],
-      loading: false
+      loading: false,
+      bill: '' // 账期
     }
   },
   beforeMount() {
@@ -73,6 +77,7 @@ export default {
       get_monthlysettlementdata({
         departmenttwo: this.$store.getters.id_二级部门 || 0
       }).then(res => {
+        this.bill = res.bill
         const arr = []
         res.data.forEach((item, index, array) => {
           if (item.固定资产类别 === '其中：房屋') {
@@ -143,6 +148,31 @@ export default {
       return data
         .map(row => Number(row[columnName]))
         .reduce((val, sum) => val + sum)
+    },
+    // 提交月结账
+    btnok() {
+      const resData = {
+        二级部门Id: this.$store.getters.id_二级部门,
+        二级部门名称: this.$store.getters.二级部门名称,
+        结账人: this.$store.getters.姓名,
+        账期: this.bill
+      }
+       monthlyclosingsubmit(resData).then(res => {
+        if (res.code === 100) {
+          this.$notify({
+            title: '成功',
+            message: '提交成功',
+            type: 'success'
+          })
+          this.get_monthlysettlementdata()
+        } else {
+          this.$notify({
+            title: '警告',
+            message: res.msg,
+            type: 'warning'
+          })
+        }
+      })
     }
   }
 }
