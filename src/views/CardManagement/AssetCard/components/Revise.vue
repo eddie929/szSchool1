@@ -36,7 +36,7 @@
                   placement="bottom"
                   effect="light"
                 >
-                  <i class="el-icon-warning-outline" style="color: #409eff"></i>
+                  <i class="el-icon-warning-outline" style="color: #409eff" />
                 </el-tooltip>
               </el-form-item>
             </el-col>
@@ -45,7 +45,7 @@
                 label="资产状态"
                 prop="资产状态"
                 :label-width="formLabelWidth"
-                >{{ form.资产状态 }}
+              >{{ form.资产状态 }}
                 <!-- <el-input
                   v-model="form.资产状态"
                   disabled
@@ -60,14 +60,14 @@
                 :label-width="formLabelWidth"
               >
                 <el-cascader
+                  v-model="AssetClassesvalue"
                   style="width: 85%"
                   :options="AssetClassesoptions"
                   :props="defaultProps"
                   clearable
-                  v-model="AssetClassesvalue"
                   :show-all-levels="showAllLevels"
                   @change="AssetClasseschange"
-                ></el-cascader>
+                />
               </el-form-item>
             </el-col>
           </el-row>
@@ -78,7 +78,7 @@
                 prop="资产名称"
                 :label-width="formLabelWidth"
               >
-                <el-input v-model="form.资产名称" style="width: 85%"></el-input>
+                <el-input v-model="form.资产名称" style="width: 85%" />
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -116,7 +116,7 @@
                 label="负责人"
                 prop="负责人"
                 :label-width="formLabelWidth"
-                >{{ form.负责人 }}
+              >{{ form.负责人 }}
                 <!-- <el-input
                   v-model="form.负责人"
                   disabled
@@ -131,14 +131,14 @@
                 :label-width="formLabelWidth"
               >
                 <el-cascader
-                  v-model="form.userperpo"
                   ref="cascader"
+                  v-model="form.userperpo"
                   :options="useroptions"
                   :props="props"
                   clearable
-                  @change="UsersSelectUse"
                   style="width: 85%"
-                ></el-cascader>
+                  @change="UsersSelectUse"
+                />
               </el-form-item>
             </el-col>
             <el-col :span="8">
@@ -151,7 +151,7 @@
                   v-model="form.品牌"
                   style="width: 85%"
                   clearable
-                ></el-input>
+                />
               </el-form-item>
             </el-col>
           </el-row>
@@ -205,7 +205,7 @@
                 label="原值"
                 prop="原值"
                 :label-width="formLabelWidth"
-                >{{ form.原值 }}
+              >{{ form.原值 }}
                 <!-- <el-input
                   v-model="form.原值"
                   disabled
@@ -218,7 +218,7 @@
                 label="净值"
                 prop="净值"
                 :label-width="formLabelWidth"
-                >{{ form.净值 }}
+              >{{ form.净值 }}
                 <!-- <el-input
                   v-model="form.净值"
                   disabled
@@ -231,7 +231,7 @@
                 label="折旧年限"
                 prop="折旧年限"
                 :label-width="formLabelWidth"
-                >{{ form.折旧年限 }}
+              >{{ form.折旧年限 }}
                 <!-- <el-input
                   v-model="form.折旧年限"
                   disabled
@@ -246,7 +246,7 @@
                 label="累计折旧"
                 prop="累计折旧"
                 :label-width="formLabelWidth"
-                >{{ form.累计折旧 }}
+              >{{ form.累计折旧 }}
                 <!-- <el-input
                   v-model="form.累计折旧"
                   disabled
@@ -270,8 +270,7 @@
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >
-                  </el-option>
+                  />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -280,7 +279,7 @@
                 label="取得方式"
                 prop="取得方式"
                 :label-width="formLabelWidth"
-                >{{ form.取得方式 }}
+              >{{ form.取得方式 }}
                 <!-- <el-input
                   v-model="form.取得方式"
                   disabled
@@ -295,7 +294,7 @@
                 label="取得日期"
                 prop="取得日期"
                 :label-width="formLabelWidth"
-                >{{ form.取得日期 }}
+              >{{ form.取得日期 }}
                 <!-- <el-input
                   v-model="form.取得日期"
                   disabled
@@ -320,8 +319,7 @@
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
-                  >
-                  </el-option>
+                  />
                 </el-select>
               </el-form-item>
             </el-col>
@@ -330,7 +328,7 @@
                 label="入账日期"
                 prop="入账日期"
                 :label-width="formLabelWidth"
-                >{{ form.入账日期 }}
+              >{{ form.入账日期 }}
                 <!-- <el-input
                   v-model="form.入账日期"
                   disabled
@@ -361,7 +359,7 @@
                 label="记账凭证号"
                 prop="财务记账凭证号"
                 :label-width="formLabelWidth"
-                >{{ form.财务记账凭证号 }}
+              >{{ form.财务记账凭证号 }}
                 <!-- <el-input
                   v-model="form.财务记账凭证号"
                   disabled
@@ -374,7 +372,7 @@
                 label="验收日期"
                 prop="验收时间"
                 :label-width="formLabelWidth"
-                >{{ form.验收时间 }}
+              >{{ form.验收时间 }}
                 <!-- <el-input
                   v-model="form.验收时间"
                   disabled
@@ -389,7 +387,7 @@
                 label="验收人"
                 prop="验收人名称"
                 :label-width="formLabelWidth"
-                >{{ form.验收人名称 }}
+              >{{ form.验收人名称 }}
                 <!-- <el-input
                   v-model="form.验收人名称"
                   disabled
@@ -402,7 +400,7 @@
                 label="供应商"
                 prop="供应商"
                 :label-width="formLabelWidth"
-                >{{ form.供应商 }}
+              >{{ form.供应商 }}
                 <!-- <el-input
                   v-model="form.供应商"
                   disabled
@@ -415,7 +413,7 @@
                 label="联系人"
                 prop="联系人"
                 :label-width="formLabelWidth"
-                >{{ form.联系人 }}
+              >{{ form.联系人 }}
                 <!-- <el-input
                   v-model="form.联系人"
                   disabled
@@ -426,7 +424,7 @@
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="扩展信息" name="second">
-          <el-empty description="无扩展信息" v-if="descriptions"></el-empty>
+          <el-empty v-if="descriptions" description="无扩展信息" />
           <!-- 车辆 -->
           <div v-if="carif">
             <el-row :gutter="6">
@@ -440,7 +438,7 @@
                     v-model="form.车架号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -453,7 +451,7 @@
                     v-model="form.车牌号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -466,7 +464,7 @@
                     v-model="form.车辆产地"
                     clearable
                     style="width: 85%"
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -478,8 +476,8 @@
                   :label-width="formLabelWidth"
                 >
                   <el-select
-                    clearable
                     v-model="form.车辆用途"
+                    clearable
                     placeholder="请选择"
                     style="width: 85%"
                   >
@@ -488,8 +486,7 @@
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
-                    >
-                    </el-option>
+                    />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -503,7 +500,7 @@
                     v-model="form.生产厂家"
                     clearable
                     style="width: 85%"
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -516,7 +513,7 @@
                     v-model="form.发动机号"
                     clearable
                     style="width: 85%"
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -531,7 +528,7 @@
                     v-model="form.排气量"
                     clearable
                     style="width: 85%"
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="16">
@@ -544,7 +541,7 @@
                     v-model="form.备注"
                     clearable
                     style="width: 93%"
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -569,8 +566,7 @@
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
-                    >
-                    </el-option>
+                    />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -586,8 +582,7 @@
                     style="width: 85%"
                     placeholder="落成年代"
                     value-format="yyyy-MM-dd"
-                  >
-                  </el-date-picker>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -600,7 +595,7 @@
                     v-model="form.来源地"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -615,7 +610,7 @@
                     v-model="form.备注"
                     style="width: 96%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -633,7 +628,7 @@
                     v-model="form.坐标位置"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -646,7 +641,7 @@
                     v-model="form.丘号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -659,7 +654,7 @@
                     v-model="form.权属证号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -681,8 +676,7 @@
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
-                    >
-                    </el-option>
+                    />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -698,8 +692,7 @@
                     style="width: 85%"
                     placeholder="选择日期"
                     value-format="yyyy-MM-dd"
-                  >
-                  </el-date-picker>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -719,8 +712,7 @@
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
-                    >
-                    </el-option>
+                    />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -736,7 +728,7 @@
                     v-model="form.证载面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -749,7 +741,7 @@
                     v-model="form.在用面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -762,7 +754,7 @@
                     v-model="form.出租出借面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -777,7 +769,7 @@
                     v-model="form.毁损待报废面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -790,7 +782,7 @@
                     v-model="form.对外投资面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -803,7 +795,7 @@
                     v-model="form.担保面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -818,7 +810,7 @@
                     v-model="form.闲置面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -831,7 +823,7 @@
                     v-model="form.其他面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -844,7 +836,7 @@
                     v-model="form.备注"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -862,7 +854,7 @@
                     v-model="form.坐落位置"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -882,8 +874,7 @@
                       :key="item.value"
                       :label="item.label"
                       :value="item.value"
-                    >
-                    </el-option>
+                    />
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -897,7 +888,7 @@
                     v-model="form.施工单位"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -912,7 +903,7 @@
                     v-model="form.权属证号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -925,7 +916,7 @@
                     v-model="form.证载面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -938,7 +929,7 @@
                     v-model="form.建筑面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -953,7 +944,7 @@
                     v-model="form.在用面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -966,7 +957,7 @@
                     v-model="form.出租出借面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -979,7 +970,7 @@
                     v-model="form.对外投资面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -994,7 +985,7 @@
                     v-model="form.其他面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1007,7 +998,7 @@
                     v-model="form.栋号"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1020,7 +1011,7 @@
                     v-model="form.楼层数"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1037,7 +1028,7 @@
                     style="width: 85%"
                     placeholder="选择日期"
                     value-format="yyyy-MM-dd"
-                  ></el-date-picker>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1052,8 +1043,7 @@
                     style="width: 85%"
                     placeholder="选择日期"
                     value-format="yyyy-MM-dd"
-                  >
-                  </el-date-picker>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1066,7 +1056,7 @@
                     v-model="form.占地面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1081,7 +1071,7 @@
                     v-model="form.使用面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1094,7 +1084,7 @@
                     v-model="form.闲置面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
@@ -1107,7 +1097,7 @@
                     v-model="form.毁损待报废面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1122,7 +1112,7 @@
                     v-model="form.担保面积"
                     style="width: 85%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
               <el-col :span="16">
@@ -1135,7 +1125,7 @@
                     v-model="form.备注"
                     style="width: 94%"
                     clearable
-                  ></el-input>
+                  />
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1150,12 +1140,12 @@
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
             >
-              <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
               <i
                 v-else
                 class="el-icon-plus avatar-uploader-icon"
                 style="font-size: 50px"
-              ></i>
+              />
             </el-upload>
           </div>
         </el-tab-pane>
@@ -1168,207 +1158,206 @@
         size="medium"
         class="el-icon-collection-tag"
         @click="submit"
-        >保 存</el-button
-      >
+      >保 存</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script>
-import { get_categoryalldata } from "@/api/categoryhandle";
-import { up_atfile } from "@/api/filehandle";
+import { get_categoryalldata } from '@/api/categoryhandle'
+import { up_atfile } from '@/api/filehandle'
 import {
   get_schoolresponseperson,
   up_accountleadger
-} from "@/api/assetaccounthandle";
-import UsercarseUse from "@/bitcomponents/Usercarse"; // 负责人
+} from '@/api/assetaccounthandle'
+import UsercarseUse from '@/bitcomponents/Usercarse' // 负责人
 export default {
   components: { UsercarseUse },
   data() {
     return {
-      title: "",
+      title: '',
       dialogVisible: false,
-      activeName: "first",
+      activeName: 'first',
       form: {},
       rules: {},
-      labelPosition: "left",
-      formLabelWidth: "110px",
+      labelPosition: 'left',
+      formLabelWidth: '110px',
       defaultProps: {
-        children: "children",
-        label: "分类名称",
-        value: "id"
+        children: 'children',
+        label: '分类名称',
+        value: 'id'
       },
       // 价值类型
       jzlxoptions: [
         {
-          value: "原值",
-          label: "原值"
+          value: '原值',
+          label: '原值'
         },
         {
-          value: "评估值",
-          label: "评估值"
+          value: '评估值',
+          label: '评估值'
         },
         {
-          value: "暂估值",
-          label: "暂估值"
+          value: '暂估值',
+          label: '暂估值'
         },
         {
-          value: "重置值",
-          label: "重置值"
+          value: '重置值',
+          label: '重置值'
         },
         {
-          value: "无价值",
-          label: "无价值"
+          value: '无价值',
+          label: '无价值'
         },
         {
-          value: "名义金额",
-          label: "名义金额"
+          value: '名义金额',
+          label: '名义金额'
         }
       ],
       // 使用方向
       syfxoptions: [
         {
-          label: "教学",
-          value: "教学"
+          label: '教学',
+          value: '教学'
         },
         {
-          label: "科研",
-          value: "科研"
+          label: '科研',
+          value: '科研'
         },
         {
-          label: "行政",
-          value: "行政"
+          label: '行政',
+          value: '行政'
         },
         {
-          label: "其他",
-          value: "其他"
+          label: '其他',
+          value: '其他'
         }
       ],
-      useroptions: [], //使用人
+      useroptions: [], // 使用人
       props: {
-        children: "children2",
-        label: "name",
-        value: "id",
-        checkStrictly: false //是否可以选择任意一级
+        children: 'children2',
+        label: 'name',
+        value: 'id',
+        checkStrictly: false // 是否可以选择任意一级
       },
       disabled: true,
-      showAllLevels: true, //资产类别是否显示全部
+      showAllLevels: true, // 资产类别是否显示全部
       AssetClassesvalue: [],
-      AssetClassesoptions: [], //资产类别
-      descriptions: true, //扩展隐藏
-      carif: true, //车辆隐藏
-      Cultural: true, //文物
-      land: true, //土地
-      fangwu: true, //房屋
+      AssetClassesoptions: [], // 资产类别
+      descriptions: true, // 扩展隐藏
+      carif: true, // 车辆隐藏
+      Cultural: true, // 文物
+      land: true, // 土地
+      fangwu: true, // 房屋
       // 车辆用途
       车辆用途options: [
         {
-          value: "副部(省)级以上领导用车",
-          label: "副部(省)级以上领导用车"
+          value: '副部(省)级以上领导用车',
+          label: '副部(省)级以上领导用车'
         },
         {
-          value: "主要领导干部用车",
-          label: "主要领导干部用车"
+          value: '主要领导干部用车',
+          label: '主要领导干部用车'
         },
         {
-          value: "一般公务用车",
-          label: "一般公务用车"
+          value: '一般公务用车',
+          label: '一般公务用车'
         },
         {
-          value: "执法执勤用车",
-          label: "执法执勤用车"
+          value: '执法执勤用车',
+          label: '执法执勤用车'
         },
         {
-          value: "机要通信用车",
-          label: "机要通信用车"
+          value: '机要通信用车',
+          label: '机要通信用车'
         },
         {
-          value: "应急保障用车",
-          label: "应急保障用车"
+          value: '应急保障用车',
+          label: '应急保障用车'
         },
         {
-          value: "特种专业技术用车",
-          label: "特种专业技术用车"
+          value: '特种专业技术用车',
+          label: '特种专业技术用车'
         },
         {
-          value: "其他用车",
-          label: "其他用车"
+          value: '其他用车',
+          label: '其他用车'
         }
       ],
       // 土地性质
       权属性质options: [
         {
-          value: "国有",
-          label: "国有"
+          value: '国有',
+          label: '国有'
         },
         {
-          value: "集体",
-          label: "集体"
+          value: '集体',
+          label: '集体'
         },
         {
-          value: "其他",
-          label: "其他"
+          value: '其他',
+          label: '其他'
         }
       ],
-      //土地来源
+      // 土地来源
       土地来源options: [
         {
-          value: "出让",
-          label: "出让"
+          value: '出让',
+          label: '出让'
         },
         {
-          value: "划拨",
-          label: "划拨"
+          value: '划拨',
+          label: '划拨'
         },
         {
-          value: "租赁",
-          label: "租赁"
+          value: '租赁',
+          label: '租赁'
         }
       ],
       // 建筑结构
       建筑结构options: [
         {
-          value: "钢结构",
-          label: "钢结构"
+          value: '钢结构',
+          label: '钢结构'
         },
         {
-          value: "钢筋混凝土结构",
-          label: "钢筋混凝土结构"
+          value: '钢筋混凝土结构',
+          label: '钢筋混凝土结构'
         },
         {
-          value: "砖混结构",
-          label: "砖混结构"
+          value: '砖混结构',
+          label: '砖混结构'
         },
         {
-          value: "砖木结构",
-          label: "砖木结构"
+          value: '砖木结构',
+          label: '砖木结构'
         }
       ],
       // 文物等级
       文物等级options: [
         {
-          value: "一级",
-          label: "一级"
+          value: '一级',
+          label: '一级'
         },
         {
-          value: "二级",
-          label: "二级"
+          value: '二级',
+          label: '二级'
         },
         {
-          value: "三级",
-          label: "三级"
+          value: '三级',
+          label: '三级'
         },
         {
-          value: "一般文物",
-          label: "一般文物"
+          value: '一般文物',
+          label: '一般文物'
         }
       ],
-      imageUrl: ""
-    };
+      imageUrl: ''
+    }
   },
   methods: {
     ellink() {
-      this.$router.push({ path: "/Purchase/index" });
+      this.$router.push({ path: '/Purchase/index' })
     },
     // 保存
     submit() {
@@ -1385,15 +1374,15 @@ export default {
         一级类别名称: this.form.一级类别名称,
         二级类别名称: this.form.二级分类名称,
         使用人Id: this.form.使用人Id,
-        车架号: this.form.车架号 || "",
-        车牌号: this.form.车牌号 || "",
-        车辆产地: this.form.车辆产地 || "",
-        车辆用途: this.form.车辆用途 || "",
-        生产厂家: this.form.生产厂家 || "",
-        发动机号: this.form.发动机号 || "",
-        排气量: this.form.排气量 || "",
+        车架号: this.form.车架号 || '',
+        车牌号: this.form.车牌号 || '',
+        车辆产地: this.form.车辆产地 || '',
+        车辆用途: this.form.车辆用途 || '',
+        生产厂家: this.form.生产厂家 || '',
+        发动机号: this.form.发动机号 || '',
+        排气量: this.form.排气量 || '',
 
-        //土地
+        // 土地
         坐标位置: this.form.坐标位置,
         丘号: this.form.丘号,
         权属证号: this.form.权属证号,
@@ -1433,80 +1422,80 @@ export default {
         落成年代: this.form.落成年代,
         来源地: this.form.来源地,
         备注: this.form.备注
-      };
+      }
 
       if (
         this.form.userperpo[1] == undefined ||
         this.form.userperpo[1] == null
       ) {
-        data.userId = 0;
+        data.userId = 0
       }
       if (this.AssetClassesvalue.length == 4) {
-        data.一级类别ID = this.AssetClassesvalue[0];
-        data.二级类别ID = this.AssetClassesvalue[1];
-        data.三级类别ID = this.AssetClassesvalue[2];
-        data.四级类别ID = this.AssetClassesvalue[3];
+        data.一级类别ID = this.AssetClassesvalue[0]
+        data.二级类别ID = this.AssetClassesvalue[1]
+        data.三级类别ID = this.AssetClassesvalue[2]
+        data.四级类别ID = this.AssetClassesvalue[3]
       }
       if (this.AssetClassesvalue.length == 3) {
-        data.一级类别ID = this.AssetClassesvalue[0];
-        data.二级类别ID = this.AssetClassesvalue[1];
-        data.三级类别ID = this.AssetClassesvalue[2];
-        data.四级类别ID = 0;
+        data.一级类别ID = this.AssetClassesvalue[0]
+        data.二级类别ID = this.AssetClassesvalue[1]
+        data.三级类别ID = this.AssetClassesvalue[2]
+        data.四级类别ID = 0
       }
       if (this.AssetClassesvalue.length == 2) {
-        data.一级类别ID = this.AssetClassesvalue[0];
-        data.二级类别ID = this.AssetClassesvalue[1];
-        data.三级类别ID = 0;
-        data.四级类别ID = 0;
+        data.一级类别ID = this.AssetClassesvalue[0]
+        data.二级类别ID = this.AssetClassesvalue[1]
+        data.三级类别ID = 0
+        data.四级类别ID = 0
       }
       if (this.AssetClassesvalue.length == 1) {
-        data.一级类别ID = this.AssetClassesvalue[0];
-        data.二级类别ID = 0;
-        data.三级类别ID = 0;
-        data.四级类别ID = 0;
+        data.一级类别ID = this.AssetClassesvalue[0]
+        data.二级类别ID = 0
+        data.三级类别ID = 0
+        data.四级类别ID = 0
       }
       if (this.AssetClassesvalue.length == 0) {
-        this.msg("警告", "请选择分类!");
-        return;
+        this.msg('警告', '请选择分类!')
+        return
       }
       // console.log(data);
       const loading = this.$loading({
         lock: true,
-        text: "Loading",
-        spinner: "el-icon-loading",
-        background: "rgba(0, 0, 0, 0.7)"
-      });
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
 
       // return;
       up_accountleadger(data).then(res => {
         if (res.code == 100) {
-          this.alter_box(res.code, "修改成功");
-          loading.close();
-          this.$emit("close");
-          this.dialogVisible = false;
+          this.alter_box(res.code, '修改成功')
+          loading.close()
+          this.$emit('close')
+          this.dialogVisible = false
         }
-      });
+      })
     },
     onload2() {
       var data = {
         departmentone: this.$store.getters.id_一级部门,
         departmentwo: this.$store.getters.id_二级部门
-      };
+      }
       get_schoolresponseperson(data).then(res => {
-        this.useroptions = res.data; //使用人
-      });
+        this.useroptions = res.data // 使用人
+      })
     },
     onload(row) {
       const loading = this.$loading({
         lock: true,
-        text: "Loading",
-        spinner: "el-icon-loading",
-        background: "rgba(0, 0, 0, 0.7)"
-      });
-      this.form = row;
-      this.get_categoryalldata(); //初始化类别
-      this.setAsset(); //设置类别绑定
-      this.onload2(); //设置类别绑定
+        text: 'Loading',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
+      })
+      this.form = row
+      this.get_categoryalldata() // 初始化类别
+      this.setAsset() // 设置类别绑定
+      this.onload2() // 设置类别绑定
       // console.log(row);
       // console.log([
       //   row.一级类别ID,
@@ -1519,116 +1508,116 @@ export default {
         row.二级类别ID,
         row.三级类别ID,
         row.四级类别ID
-      ];
+      ]
       if (row.四级类别ID == 0) {
         this.AssetClassesvalue = [
           row.一级类别ID,
           row.二级类别ID,
           row.三级类别ID
-        ];
+        ]
       }
       if (row.三级类别ID == 0) {
-        this.AssetClassesvalue = [row.一级类别ID, row.二级类别ID];
+        this.AssetClassesvalue = [row.一级类别ID, row.二级类别ID]
       }
       if (row.二级类别ID == 0) {
-        this.AssetClassesvalue = [row.一级类别ID];
+        this.AssetClassesvalue = [row.一级类别ID]
       }
       if (row.二级类别ID == 0) {
-        this.AssetClassesvalue = "";
+        this.AssetClassesvalue = ''
       }
       if (row.使用人Id != 0) {
-        this.form.userperpo = [row.使用人一级机构, row.使用人Id];
+        this.form.userperpo = [row.使用人一级机构, row.使用人Id]
       } else {
       }
-      this.imageUrl = this.form.照片服务器路径;
+      this.imageUrl = this.form.照片服务器路径
       // console.log("this.AssetClassesvalue", this.AssetClassesvalue);
-      this.title = "卡片——" + row.资产名称;
-      var that = this;
+      this.title = '卡片——' + row.资产名称
+      var that = this
       setTimeout(function() {
-        loading.close();
-        that.dialogVisible = true;
-      }, 600);
+        loading.close()
+        that.dialogVisible = true
+      }, 600)
     },
     // 使用人选择
     UsersSelectUse(val) {
       // console.log(val);
-      this.form.使用人Id = val[1];
+      this.form.使用人Id = val[1]
     },
-    //上传前验证
+    // 上传前验证
     beforeAvatarUpload(file) {
-      const isLt2M = file.size / 1024 / 1024 < 20;
+      const isLt2M = file.size / 1024 / 1024 < 20
 
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 20MB!");
+        this.$message.error('上传头像图片大小不能超过 20MB!')
       }
-      //文件名转码
-      var suffix = file.name;
-      var key = encodeURI(`${suffix}`);
+      // 文件名转码
+      var suffix = file.name
+      var key = encodeURI(`${suffix}`)
       // console.log(key);
-      return isLt2M;
+      return isLt2M
     },
-    //上传成功
+    // 上传成功
     handleAvatarSuccess(res, file) {
-      this.imageUrl = res.url; //文件具体信息
-      this.assetimageid = res.code; //图片ID
+      this.imageUrl = res.url // 文件具体信息
+      this.assetimageid = res.code // 图片ID
       var data = {
         id_file: res.code,
         id_at: this.form.资产Id
-      };
+      }
       up_atfile(data).then(ress => {
         if (ress.code >= 0) {
           // console.log("res", ress);
 
           // console.log(this.imageUrl);
-          this.msg("成功", "上传成功!");
+          this.msg('成功', '上传成功!')
         }
-      });
+      })
     },
     // 返回
     opendisplay() {
-      this.dialogVisible = false;
+      this.dialogVisible = false
     },
     // 类别初始化
     get_categoryalldata() {
       get_categoryalldata().then(res => {
-        this.AssetClassesoptions = res.data;
-      });
+        this.AssetClassesoptions = res.data
+      })
     },
     setAsset() {
       if (this.form.二级类别ID != 0) {
-        this.AssetClassesvalue = [this.form.一级类别ID, this.form.二级类别ID];
+        this.AssetClassesvalue = [this.form.一级类别ID, this.form.二级类别ID]
       } else if (this.form.三级类别ID != 0) {
         this.AssetClassesvalue = [
           this.form.一级类别ID,
           this.form.二级类别ID,
           this.form.三级类别ID
-        ];
+        ]
       } else if (this.form.四级类别ID != 0) {
         this.AssetClassesvalue = [
           this.form.一级类别ID,
           this.form.二级类别ID,
           this.form.三级类别ID,
           this.form.四级类别ID
-        ];
+        ]
       } else {
-        this.AssetClassesvalue = [this.form.一级类别ID];
+        this.AssetClassesvalue = [this.form.一级类别ID]
       }
       // console.log(this.AssetClassesvalue);
     },
     // 资产类别选择
     AssetClasseschange(val) {
       // console.log(val);
-      this.form.资产类别选择 = val;
+      this.form.资产类别选择 = val
     },
     // 关闭之前调用
     handleClose(val) {
       // console.log(val);
-      this.form = {};
-      this.disabled = true;
-      this.dialogVisible = false;
+      this.form = {}
+      this.disabled = true
+      this.dialogVisible = false
     }
   }
-};
+}
 </script>
 
 <style scoped>

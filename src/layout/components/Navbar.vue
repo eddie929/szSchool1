@@ -15,16 +15,16 @@
           effect="dark"
           content="使用说明"
           placement="bottom"
-          
+
         > -->
-          <el-badge
-            style="height: 20px; margin-bottom: 40px; margin-right: 3px;margin-top:-10px"
-          >
-            <el-link
-              class="el-icon-question"
-              style="font-size: 25px; margin-bottom: 34px; color: #409eff"
-            />
-          </el-badge>
+        <el-badge
+          style="height: 20px; margin-bottom: 40px; margin-right: 3px;margin-top:-10px"
+        >
+          <el-link
+            class="el-icon-question"
+            style="font-size: 25px; margin-bottom: 34px; color: #409eff"
+          />
+        </el-badge>
         <!-- </el-tooltip> -->
         <span style="margin-left:-44px;font-size: 5px">使用说明</span>
         <!-- <el-tooltip
@@ -33,17 +33,17 @@
           content="消息"
           placement="bottom"
         > -->
-          <el-badge
-            :is-dot="isdot"
-            icon-class="消息"
-            style="height: 20px; margin-bottom: 40px; margin-right: 3px;margin-left:20px;margin-top:-10px;"
-          >
-            <el-link
-              @click="xiaoxi"
-              class="el-icon-s-opportunity"
-              style="font-size: 25px; margin-bottom: 34px; color: #409eff"
-            ></el-link>
-          </el-badge>
+        <el-badge
+          :is-dot="isdot"
+          icon-class="消息"
+          style="height: 20px; margin-bottom: 40px; margin-right: 3px;margin-left:20px;margin-top:-10px;"
+        >
+          <el-link
+            class="el-icon-s-opportunity"
+            style="font-size: 25px; margin-bottom: 34px; color: #409eff"
+            @click="xiaoxi"
+          />
+        </el-badge>
         <!-- </el-tooltip> -->
         <span style="margin-left:-44px;font-size: 5px">消息中心</span>
         <!-- <svg-icon
@@ -88,7 +88,7 @@
         trigger="click"
       >
         <span class="avatar-dropdown">
-          <img class="user-avatar" :src="logo" alt="" />
+          <img class="user-avatar" :src="logo" alt="">
 
           <div class="user-name">
             {{ 姓名 }}
@@ -113,9 +113,10 @@
             <el-dropdown-item>个人中心</el-dropdown-item>
           </router-link>
           <el-dropdown-item>
-            <span style="display: block" @click="dialogVisible = true"
-              >修改密码</span
-            >
+            <span
+              style="display: block"
+              @click="dialogVisible = true"
+            >修改密码</span>
           </el-dropdown-item>
           <el-dropdown-item divided>
             <span style="display: block" @click="logout">退出登录</span>
@@ -160,9 +161,10 @@
             />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')"
-              >提交</el-button
-            >
+            <el-button
+              type="primary"
+              @click="submitForm('ruleForm')"
+            >提交</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
@@ -176,14 +178,22 @@
         width="60%"
         top="11vh"
       >
-        <h4 style="margin-top:-10px;font-size: 16px; color: #00000073; text-align: center">
-          消息中心
-        </h4>
+        <el-row :gutter="10">
+          <el-col :span="12">
+            <el-switch
+              v-model="switchValue"
+              active-text="全部未读"
+              inactive-text="全部已读"
+              style="float:left; margin:10px;"
+              @change="switchChange"
+            />
+          </el-col>
+        </el-row>
         <el-table
-          :data="tableData"
           ref="DataTable"
-          style="width: 98%; margin-top: 1%; margin: 0 auto"
           v-loading="loading"
+          :data="tableData"
+          style="width: 98%; margin-top: 5px; margin: 0 auto"
           :highlight-current-row="true"
           border
           stripe
@@ -192,7 +202,7 @@
           :cell-style="yellowBg"
           :header-cell-style="{
             'text-align': 'center',
-            background: '#eef1f6',
+            background: '#eef1f6'
           }"
         >
           <el-table-column
@@ -200,32 +210,28 @@
             type="index"
             width="50"
             :reserve-selection="true"
-          ></el-table-column>
-          <el-table-column prop="消息事项" label="消息事项"></el-table-column>
+          />
+          <el-table-column prop="消息事项" label="消息事项" />
           <el-table-column
             prop="消息内容"
             label="消息内容"
             :show-overflow-tooltip="true"
-          >
-          </el-table-column>
+          />
           <el-table-column
             prop="发布人"
             label="发布人"
             :show-overflow-tooltip="true"
-          >
-          </el-table-column>
+          />
           <el-table-column
             prop="发布时间"
             label="发布时间"
             :show-overflow-tooltip="true"
-          >
-          </el-table-column>
+          />
           <el-table-column
             prop="通知类型"
             label="通知类型"
             :show-overflow-tooltip="true"
-          >
-          </el-table-column>
+          />
           <el-table-column
             prop=""
             label="是否已读"
@@ -237,7 +243,12 @@
           </el-table-column>
           <el-table-column fixed="right" label="操作" width="120">
             <template slot-scope="scope">
-              <el-button @click="hande(scope.row)" type="text" size="small" v-if="scope.row.是否已读==0">
+              <el-button
+                v-if="scope.row.是否已读 == 0"
+                type="text"
+                size="small"
+                @click="hande(scope.row)"
+              >
                 已 读
               </el-button>
             </template>
@@ -247,14 +258,14 @@
           <el-col :span="24">
             <el-pagination
               background
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
               :current-page="pageinfo.pageNum"
               :page-sizes="pageinfo.pageSizes"
               :page-size="pageinfo.pageSize"
               layout="total, sizes, prev, pager, next, jumper"
               :total="pageinfo.count"
-            ></el-pagination>
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+            />
           </el-col>
         </el-row>
       </el-dialog>
@@ -263,183 +274,205 @@
 </template>
 
 <script>
-import { get_noticelistcount } from "@/api/datareportstatisticshandle";
-import { mapGetters } from "vuex";
-import { alter_password } from "@/api/userhandle"; // 修改密码
-import { get_noticelist } from "@/api/datareportstatisticshandle";
-import Breadcrumb from "@/components/Breadcrumb";
-import Hamburger from "@/components/Hamburger";
+import { get_noticelistcount } from '@/api/datareportstatisticshandle'
+import { mapGetters } from 'vuex'
+import { alter_password } from '@/api/userhandle' // 修改密码
+import { get_noticelist } from '@/api/datareportstatisticshandle'
+import Breadcrumb from '@/components/Breadcrumb'
+import Hamburger from '@/components/Hamburger'
 // import Screenfull from '@/components/Screenfull'
 // import Search from '@/components/HeaderSearch'
-import userlogo from "@/assets/sysimages/userlogo.png";
+import userlogo from '@/assets/sysimages/userlogo.png'
 export default {
   components: {
     Breadcrumb,
-    Hamburger,
+    Hamburger
     // Search
   },
   computed: {
-    ...mapGetters(["sidebar", "device", "姓名"]),
+    ...mapGetters(['sidebar', 'device', '姓名'])
   },
   mounted() {},
+  beforeMount() {
+    this.get_noticelist()
+  },
   methods: {
+    switchChange(val) {
+      // 全部已读
+      let wholeread = 0
+      if (val === false) {
+        wholeread = 2
+      } else {
+        wholeread = 3
+      }
+      const resData = {
+        id: 0,
+        isread: 0,
+        wholeread: wholeread,
+        departmenttwo: this.$store.getters.id_二级部门
+      }
+       get_noticelistcount(resData).then(res => {
+        this.get_noticelist()
+      })
+    },
     // 打开消息
     xiaoxi() {
-      this.drawer = true;
+      this.drawer = true
     },
     // 设为已读
     hande(row) {
       // console.log(row);
-      get_noticelistcount({ id: row.id, isread: 1 }).then((res) => {
-        this.get_noticelist();
-      });
+      get_noticelistcount({ id: row.id, isread: 1 }).then(res => {
+        this.get_noticelist()
+      })
     },
     yellowBg({ row, column, rowIndex, columnIndex }) {
       // console.log(row.是否已读);
       if (row.是否已读 == 0) {
         return {
-          background: "#d9ecff",
-        };
+          background: '#d9ecff'
+        }
       } else {
         return {
-          background: "",
-        };
+          background: ''
+        }
       }
     },
     toggleSideBar() {
-      this.$store.dispatch("app/toggleSideBar");
+      this.$store.dispatch('app/toggleSideBar')
     },
     // 退出登录
     async logout() {
-      await this.$store.dispatch("user/logout");
-      location.reload();
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+      await this.$store.dispatch('user/logout')
+      location.reload()
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
     handleClose(done) {
-      this.dialogVisible = false;
-      this.resetForm("ruleForm");
+      this.dialogVisible = false
+      this.resetForm('ruleForm')
     },
     maturity(row) {
       if (row.是否已读 == 0) {
-        return "未读";
+        return '未读'
       } else {
-        return "已读";
+        return '已读'
       }
     },
     // 修改密码提交按钮
     submitForm(ruleForm) {
-      this.$refs[ruleForm].validate((valid) => {
+      this.$refs[ruleForm].validate(valid => {
         if (valid) {
           const reqdata = {
             userid: this.$store.getters.id_用户,
             oldpass: this.ruleForm.oldword,
-            newpass: this.ruleForm.checkPass,
-          };
+            newpass: this.ruleForm.checkPass
+          }
           alter_password(reqdata)
-            .then((response) => {
+            .then(response => {
               // 成功
               if (response.code === 100) {
                 this.$message({
-                  message: "密码修改成功,请重新登录系统!",
-                  type: "success",
-                });
-                this.logout();
-                this.dialogVisible = false;
+                  message: '密码修改成功,请重新登录系统!',
+                  type: 'success'
+                })
+                this.logout()
+                this.dialogVisible = false
               } else if (response.code === -2) {
                 this.$message({
                   message: response.msg,
-                  type: "error",
-                });
-                return;
+                  type: 'error'
+                })
+                return
               } else if (response.code === 102) {
                 this.$message({
                   message: response.msg,
-                  type: "warning",
-                });
-                return;
+                  type: 'warning'
+                })
+                return
               } else {
                 this.$message({
                   message: response.msg,
-                  type: "error",
-                });
-                return;
+                  type: 'error'
+                })
+                return
               }
             })
-            .catch();
+            .catch()
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     },
     // 重置
     resetForm(formName) {
-      this.$refs[formName].resetFields();
+      this.$refs[formName].resetFields()
     },
     // 消息中心
     get_noticelist() {
-      this.loading = true;
-      get_noticelist(this.pageinfo).then((res) => {
-        this.loading = false;
-        this.tableData = res.data;
-        this.pageinfo.count = res.count;
+      this.loading = true
+      get_noticelist(this.pageinfo).then(res => {
+        this.loading = false
+        this.tableData = res.data
+        this.pageinfo.count = res.count
         for (var i in this.tableData) {
-          if (this.tableData[i].是否已读 == 0) {
-            this.isdot = true;
-            return;
+          if (this.tableData[i].是否已读 === 0) {
+            this.isdot = true
+            return
           } else {
-            this.isdot = false;
+            this.isdot = false
           }
         }
-      });
+      })
     },
-    //控制每页显示条数
+    // 控制每页显示条数
     handleSizeChange(val) {
-      this.pageinfo.pageSize = val;
-      this.get_noticelist();
+      this.pageinfo.pageSize = val
+      this.get_noticelist()
     },
-    //第几页
+    // 第几页
     handleCurrentChange(val) {
       // console.log(val)
-      this.pageinfo.pageNum = val;
-      this.get_noticelist();
-    },
+      this.pageinfo.pageNum = val
+      this.get_noticelist()
+    }
   },
 
   data() {
     // 修改密码窗口的验证
     var validateOldPass = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error("原密码不能为空"));
+        return callback(new Error('原密码不能为空'))
       }
-      callback();
-    };
+      callback()
+    }
     var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
+      if (value === '') {
+        callback(new Error('请输入密码'))
       } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass')
         }
-        callback();
+        callback()
       }
-    };
+    }
     var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
       } else if (value !== this.ruleForm.pass) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error('两次输入密码不一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       visible: false,
-      username: "",
+      switchValue: '',
+      username: '',
       ruleForm: {
-        pass: "",
-        checkPass: "",
-        oldword: "",
+        pass: '',
+        checkPass: '',
+        oldword: ''
       },
       pageinfo: {
         pageNum: 1,
@@ -449,35 +482,32 @@ export default {
         fk_user: this.$store.getters.id_用户,
         fk_role: this.$store.getters.id_角色,
         departmentone: this.$store.getters.id_一级部门,
-        departmenttwo: this.$store.getters.id_二级部门,
+        departmenttwo: this.$store.getters.id_二级部门
       },
       isdot: false,
       tableData: [],
-      direction: "rtl",
+      direction: 'rtl',
       loading: false,
       drawer: false,
-      title: "用户logo",
+      title: '用户logo',
       logo: userlogo,
       dialogVisible: false,
       rules: {
-        oldword: [{ validator: validateOldPass, trigger: "blur" }],
+        oldword: [{ validator: validateOldPass, trigger: 'blur' }],
         pass: [
-          { validator: validatePass, trigger: "blur" },
+          { validator: validatePass, trigger: 'blur' },
           {
             min: 5,
             max: 12,
-            message: "长度在 5 到 12 个字符",
-            trigger: "blur",
-          },
+            message: '长度在 5 到 12 个字符',
+            trigger: 'blur'
+          }
         ],
-        checkPass: [{ validator: validatePass2, trigger: "blur" }],
-      },
-    };
-  },
-  beforeMount() {
-    this.get_noticelist();
-  },
-};
+        checkPass: [{ validator: validatePass2, trigger: 'blur' }]
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

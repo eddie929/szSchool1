@@ -6,24 +6,24 @@
           <el-row :gutter="10">
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  资产总数:{{ 资产数量 }}
                 </span>
               </div>
             </el-col>
 
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  资产原值：:{{ 资产原值 }}
                 </span>
               </div>
             </el-col>
 
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  资产净值：:{{ 资产净值 }}
                 </span>
               </div>
             </el-col>
@@ -35,24 +35,24 @@
           <el-row :gutter="10">
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  存放地:{{ 地点数量 }}
                 </span>
               </div>
             </el-col>
 
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  部门:{{ 部门数量 }}
                 </span>
               </div>
             </el-col>
 
             <el-col :span="8">
               <div>
-                <span style="font-size: 20px; color: SlateGray">
-                  资产总数:{{ 123 }}件
+                <span style="font-size: 20px; color: DarkSlateGray">
+                  人员:{{ 人员数量 }}
                 </span>
               </div>
             </el-col>
@@ -62,145 +62,139 @@
     </el-row>
 
     <el-row :gutter="10" style="margin-top: 10px;">
-      <el-col :span="12">
-        <el-card class="box-card" style="height:400px;">
+      <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+        <el-card class="box-card" style="height:500px;">
           <div slot="header" class="clearfix">
             <span>标签情况</span>
           </div>
-          <el-alert title="二维码标签数量" type="success" :closable="false" />
+          <el-alert :title="待打印标签数量" type="info" :closable="false" />
           <el-alert
             style="margin-top:10px"
-            title="二维码标签数量"
-            type="warning"
+            :title="二维码标签数量"
+            type="info"
             :closable="false"
           />
           <el-alert
             style="margin-top:10px"
-            title="二维码标签数量"
-            type="success"
+            :title="电子标签数量"
+            type="info"
             :closable="false"
           />
         </el-card>
       </el-col>
-      <el-col :span="12">
-        <el-card class="box-card" style="height:400px;">
-          <div id="main" ref="main" slot="header" class="clearfix mymain">
-            <span>资产分析</span>
-          </div>
-        </el-card>
-      </el-col>
+      <div class="Echarts">
+        <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+          <el-card class="box-card" style="height:500px;">
+            <div slot="header" class="clearfix" style="height:18px">
+              <span>资产分布</span>
+              <div style="float:right;">
+                <!-- <template>
+                  <el-radio v-model="radio" label="按存放地">按存放地</el-radio>
+                  <el-radio v-model="radio" label="按部门">按部门</el-radio>
+                  <el-radio v-model="radio" label="按负责人">按负责人</el-radio>
+                </template> -->
+
+                <el-radio-group v-model="radio" @change="ridioChang">
+                  <el-radio label="地点">按存放地</el-radio>
+                  <el-radio label="部门">按部门</el-radio>
+                  <el-radio label="负责人">按负责人</el-radio>
+                </el-radio-group>
+              </div>
+            </div>
+            <div id="main" ref="main" class="mymain" />
+
+            <div
+              style="margin-top:-10px; float:right; overflow: hidden;  z-index: 8;"
+            >
+              <el-link
+                :type="moneyType"
+                class="el-collapse-transition"
+                :style="moneySize"
+                @click="moneyissum('金额')"
+              >金额</el-link>
+              &nbsp
+              <el-link
+                :type="sumType"
+                class="el-collapse-transition"
+                :style="sumSize"
+                @click="moneyissum('数量')"
+              >数量</el-link>
+            </div>
+          </el-card>
+        </el-col>
+      </div>
     </el-row>
+
+    <el-tabs type="border-card" style="margin-top: 10px;">
+      <el-tab-pane label="最近登录人员">
+        <recentUser ref="recentUser" :islogin="1" />
+      </el-tab-pane>
+      <el-tab-pane label="从未登录人员">
+        <recentUser ref="recentUser" :islogin="0" />
+      </el-tab-pane>
+    </el-tabs>
     <div />
   </div>
 </template>
 
 <script>
 import 'echarts/theme/浅色.js' // 引用Echarts主题
+import {
+  get_assetdistribution,
+  get_labeldata,
+  get_wholedata
+} from '@/api/datacenterhandle'
+import recentUser from './components/recentUser.vue'
 export default {
   name: 'SKJB',
+  components: { recentUser },
   data() {
-    return {}
+    return {
+      radio: '地点',
+      moneyType: 'primary',
+      sumType: 'info',
+      moneySize: 'font-size:16px; font-weight:bold;',
+      sumSize: 'font-size:12px; font-weight:bold',
+      cIsm: '金额',
+      待打印标签数量: '待打印标签数量：0',
+      电子标签数量: '电子标签数量：0',
+      二维码标签数量: '二维码标签数量：0',
+      资产数量: 0,
+      资产原值: '',
+      资产净值: '',
+      人员数量: 0,
+      部门数量: 0,
+      地点数量: 0
+    }
   },
   mounted() {
-    this.myecharts()
+    // 首次加载
+    this.myecharts(this.cIsm, this.radio)
+    this.get_labeldata()
+    this.get_wholedata()
   },
   methods: {
-    myecharts() {
+    myecharts(cIsm, ridioText) {
       var echarts = require('echarts')
       var chartDom = document.getElementById('main')
       var myChart = echarts.init(chartDom)
-      var app = {}
       var option
-      const posList = [
-        'left',
-        'right',
-        'top',
-        'bottom',
-        'inside',
-        'insideTop',
-        'insideLeft',
-        'insideRight',
-        'insideBottom',
-        'insideTopLeft',
-        'insideTopRight',
-        'insideBottomLeft',
-        'insideBottomRight'
-      ]
-      app.configParameters = {
-        rotate: {
-          min: -90,
-          max: 90
-        },
-        align: {
-          options: {
-            left: 'left',
-            center: 'center',
-            right: 'right'
-          }
-        },
-        verticalAlign: {
-          options: {
-            top: 'top',
-            middle: 'middle',
-            bottom: 'bottom'
-          }
-        },
-        position: {
-          options: posList.reduce(function(map, pos) {
-            map[pos] = pos
-            return map
-          }, {})
-        },
-        distance: {
-          min: 0,
-          max: 100
-        }
+      const reqpara = {
+        departmenttwo: this.$store.getters.id_二级部门,
+        countway: cIsm,
+        queryway: ridioText
       }
-      app.config = {
-        rotate: 90,
-        align: 'left',
-        verticalAlign: 'middle',
-        position: 'insideBottom',
-        distance: 15,
-        onChange: function() {
-          const labelOption = {
-            rotate: app.config.rotate,
-            align: app.config.align,
-            verticalAlign: app.config.verticalAlign,
-            position: app.config.position,
-            distance: app.config.distance
+      const viewLable = []
+      const viewData = []
+      get_assetdistribution(reqpara).then(res => {
+        if (res.code === 100) {
+          for (let index = 0; index < res.data.length; index++) {
+            viewLable.push(res.data[index].名称)
+            viewData.push(res.data[index].数量)
           }
-          myChart.setOption({
-            series: [
-              {
-                label: labelOption
-              },
-              {
-                label: labelOption
-              },
-              {
-                label: labelOption
-              },
-              {
-                label: labelOption
-              }
-            ]
-          })
         }
-      }
-      const labelOption = {
-        show: true,
-        position: app.config.position,
-        distance: app.config.distance,
-        align: app.config.align,
-        verticalAlign: app.config.verticalAlign,
-        rotate: app.config.rotate,
-        formatter: '{c}  {name|{a}}',
-        fontSize: 16,
-        rich: {
-          name: {}
-        }
-      }
+      })
+
       option = {
         tooltip: {
           trigger: 'axis',
@@ -208,27 +202,19 @@ export default {
             type: 'shadow'
           }
         },
-        legend: {
-          data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
         },
-        // toolbox: {
-        //   show: true,
-        //   orient: 'vertical',
-        //   left: 'right',
-        //   top: 'center',
-        //   feature: {
-        //     mark: { show: true },
-        //     dataView: { show: true, readOnly: false },
-        //     magicType: { show: true, type: ['line', 'bar', 'stack'] },
-        //     restore: { show: true },
-        //     saveAsImage: { show: true }
-        //   }
-        // },
         xAxis: [
           {
             type: 'category',
-            axisTick: { show: false },
-            data: ['2012', '2013', '2014', '2015', '2016']
+            data: viewLable,
+            axisTick: {
+              alignWithLabel: true
+            }
           }
         ],
         yAxis: [
@@ -238,51 +224,61 @@ export default {
         ],
         series: [
           {
-            name: 'Forest',
+            name: cIsm,
             type: 'bar',
-            barGap: 0,
-            label: labelOption,
-            emphasis: {
-              focus: 'series'
-            },
-            data: [320, 332, 301, 334, 390]
-          },
-          {
-            name: 'Steppe',
-            type: 'bar',
-            label: labelOption,
-            emphasis: {
-              focus: 'series'
-            },
-            data: [220, 182, 191, 234, 290]
-          },
-          {
-            name: 'Desert',
-            type: 'bar',
-            label: labelOption,
-            emphasis: {
-              focus: 'series'
-            },
-            data: [150, 232, 201, 154, 190]
-          },
-          {
-            name: 'Wetland',
-            type: 'bar',
-            label: labelOption,
-            emphasis: {
-              focus: 'series'
-            },
-            data: [98, 77, 101, 99, 40]
+            barWidth: '70%',
+            data: viewData
           }
         ]
       }
-
-      myChart.setOption(option)
-      // setTimeout(function() {
-      //   window.onresize = function() {
-      //     myChart.resize()
-      //   }
-      // }, 200)
+      setTimeout(() => {
+        myChart.setOption(option)
+      }, 500)
+    },
+    // 金额数量切换
+    moneyissum(val) {
+      if (val === '金额') {
+        this.sumType = 'info'
+        this.moneyType = 'primary'
+        this.sumSize = 'font-size:12px; font-weight:bold'
+        this.moneySize = 'font-size:16px; font-weight:bold'
+        this.cIsm = val
+        this.myecharts(this.cIsm, this.radio)
+      } else {
+        this.sumSize = 'font-size:16px; font-weight:bold'
+        this.moneySize = 'font-size:12px; font-weight:bold'
+        this.sumType = 'primary'
+        this.moneyType = 'info'
+        this.cIsm = val
+        this.myecharts(this.cIsm, this.radio)
+      }
+    },
+    // 单选切换
+    ridioChang(val) {
+      this.myecharts(this.cIsm, this.radio)
+    },
+    // 加载标签情况
+    get_labeldata() {
+      get_labeldata({ departmenttwo: this.$store.getters.id_二级部门 }).then(
+        res => {
+          this.待打印标签数量 = '待打印标签数量：' + res.data.待打印标签数量
+          this.电子标签数量 = '电子标签数量：' + res.data.电子标签数量
+          this.二维码标签数量 = '二维码标签数量：' + res.data.二维码标签数量
+        }
+      )
+    },
+    // 整体数据
+    get_wholedata() {
+      get_wholedata({ departmenttwo: this.$store.getters.id_二级部门 }).then(
+        res => {
+          this.资产数量 = res.data.资产数量
+          this.资产原值 = res.data.资产原值
+          this.资产净值 = res.data.资产净值
+          this.人员数量 = res.data.人员数量
+          this.部门数量 = res.data.部门数量
+          this.地点数量 = res.data.地点数量
+        }
+      )
     }
   }
 }
@@ -290,7 +286,12 @@ export default {
 
 <style lang="scss" scoped>
 .mymain {
+  margin-bottom: 0px;
   width: 100%;
   height: 400px;
+  z-index: 6;
 }
+// .radio {
+//   position: fixed;
+// }
 </style>

@@ -478,14 +478,14 @@ export const constantRoutes = [{
         {
             path: '/YWFX',
             component: () =>
-                import('@/views/dataCenter/index'),
+                import('@/views/dataCenter/YWFX/index'),
             name: 'YWFX',
             meta: { title: '运维分析', icon: '折旧', noCache: true }
         },
         {
             path: '/ZJFX',
             component: () =>
-                import('@/views/dataCenter/index'),
+                import('@/views/dataCenter/ZJFX/index'),
             name: 'ZJFX',
             meta: { title: '增减分析', icon: '折旧', noCache: true }
         },

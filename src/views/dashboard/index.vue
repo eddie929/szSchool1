@@ -59,7 +59,7 @@
             <svg-icon icon-class="预警" class-name="card-panel-icon" />
           </div>
           <div class="card-panel-description">
-            <div class="card-panel-text">异常资产</div>
+            <div class="card-panel-text">异常预警</div>
             <count-to
               :start-val="0"
               :end-val="0"
@@ -160,7 +160,7 @@
         </el-col>
       </div>
     </el-row>
-    <!-- <el-row :gutter="40" style="margin-top: 30px">
+    <el-row :gutter="40" style="margin-top: 30px">
       <div class="Echarts">
         <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
           <div class="grid-content bg-purple-light" style="padding: 10px">
@@ -169,7 +169,7 @@
               ref="main3"
               style="width: 100%; height: 500px"
             />
-            <div style="overflow: hidden; z-index: 8; height: 55px">
+            <!-- <div style="overflow: hidden; z-index: 8; height: 55px">
               <div
                 class="linka"
                 style="
@@ -192,11 +192,11 @@
                   @click="main1click3('数量')"
                 >数量</el-link>
               </div>
-            </div>
+            </div> -->
           </div>
         </el-col>
       </div>
-    </el-row> -->
+    </el-row>
 
     <el-drawer
       center
@@ -352,7 +352,7 @@ export default {
   mounted() {
     this.myEcharts1('金额')
     this.myEcharts2('金额')
-    this.myEcharts3('金额')
+    // this.myEcharts3('金额')
     this.get_proportionamountquantitycount()
     this.get_noticelist()
   },

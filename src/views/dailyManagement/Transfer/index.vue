@@ -13,7 +13,12 @@
           style="margin-left: 10px"
           prop="remark"
         >
-          <el-select v-model="state" placeholder="请选择" size="small">
+          <el-select
+            v-model="state"
+            placeholder="请选择"
+            size="small"
+            @change="sleChange"
+          >
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -22,11 +27,11 @@
             />
           </el-select>
         </el-form-item>
-        <el-button
+        <!-- <el-button
           icon="el-icon-search"
           size="small"
           @click="submit"
-        >搜索</el-button>
+        >搜索</el-button> -->
       </el-form>
     </div>
     <el-table
@@ -106,6 +111,10 @@ export default {
           label: '全部'
         },
         {
+          value: '已保存',
+          label: '已保存'
+        },
+        {
           value: '待审核',
           label: '待审核'
         },
@@ -120,14 +129,19 @@ export default {
         count: 0, // 数据总数
         pagesizes: [10, 20, 30, 50],
         fk_user: 0,
-        content: ''
-      } // 搜索条件
+        flow_state: ''
+      }
     }
   },
   beforeMount() {
     this.onload()
   },
   methods: {
+    // 下拉选择流程状态
+    sleChange(val) {
+      this.state = val
+      this.onload()
+    },
     handleTransfer(val) {
       // console.log("val", val);
       if (val.流程状态 === '待审核') {
@@ -153,7 +167,7 @@ export default {
       }
     },
     // 搜索
-    submit() {},
+    // submit() {},
     // 查看
     look(row) {
       if (row.流程状态 == '已退回' || row.流程状态 == '已保存') {
@@ -162,8 +176,9 @@ export default {
         // this.$refs.AddTransfer.form.流程状态 = "待审核";
         this.$refs.AddTransfer.form.申请人 = this.$store.getters.姓名
         this.$refs.AddTransfer.form.申请人Id = this.$store.getters.id_用户
-        this.$refs.AddTransfer.form.申请日期 =
-          this.dayjs().format('YYYY-MM-DD')
+        this.$refs.AddTransfer.form.申请日期 = this.dayjs().format(
+          'YYYY-MM-DD'
+        )
         this.$refs.AddTransfer.get_storagelocation()
         this.$refs.AddTransfer.get_allschooldepartment()
         this.$refs.AddTransfer.get_schoolresponseperson()
@@ -235,8 +250,9 @@ export default {
           this.$refs.AddTransfer.titleDialog = '资产转移单'
           this.$refs.AddTransfer.form.申请人 = this.$store.getters.姓名
           this.$refs.AddTransfer.form.申请人Id = this.$store.getters.id_用户
-          this.$refs.AddTransfer.form.申请日期 =
-            this.dayjs().format('YYYY-MM-DD')
+          this.$refs.AddTransfer.form.申请日期 = this.dayjs().format(
+            'YYYY-MM-DD'
+          )
           this.$refs.AddTransfer.get_storagelocation()
           this.$refs.AddTransfer.get_allschooldepartment()
           this.$refs.AddTransfer.get_schoolresponseperson()
@@ -281,7 +297,7 @@ export default {
         departmentone: this.$store.getters.id_一级部门,
         departmenttwo: this.$store.getters.id_二级部门
       }
-      get_querytime(data).then((res) => {
+      get_querytime(data).then(res => {
         if (res.data == '是') {
           this.msg('警告', '当前存在未封存账期,不允许发起资产转移!')
           return
@@ -292,8 +308,9 @@ export default {
           this.$refs.AddTransfer.form.流程状态 = '待审核'
           this.$refs.AddTransfer.form.申请人 = this.$store.getters.姓名
           this.$refs.AddTransfer.form.申请人Id = this.$store.getters.id_用户
-          this.$refs.AddTransfer.form.申请日期 =
-            this.dayjs().format('YYYY-MM-DD')
+          this.$refs.AddTransfer.form.申请日期 = this.dayjs().format(
+            'YYYY-MM-DD'
+          )
           this.$refs.AddTransfer.form.联系方式 = this.$store.getters.手机
           if (this.$refs.AddTransfer.form.联系方式 === '') {
             this.$refs.AddTransfer.form.联系方式 = '暂无联系方式'
@@ -310,7 +327,8 @@ export default {
       this.loading = true
       this.pageinfo.fk_user = this.$store.getters.id_用户
       this.pageinfo.fk_role = this.$store.getters.id_角色
-      get_assetstransferdatal(this.pageinfo).then((res) => {
+      this.pageinfo.flow_state = this.state
+      get_assetstransferdatal(this.pageinfo).then(res => {
         this.loading = false
         this.tableData = res.data
         this.pageinfo.count = res.count
@@ -330,5 +348,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>
